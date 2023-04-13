@@ -1,0 +1,85 @@
+This is a note which expalins you that how you can add a new section according to your requirement under liquid programming.
+I will take the example of announcement bar here.
+Requirement : To add a custom announcement bar which can be designed as per client requirement.
+
+Steps : 
+- Firstly, add a new section while editing a code and design your announcement bar accordingly. Please refer a below mentioned code for a example purpose.
+<style>
+  .custom-announcement-bar {
+    background-color: {{ section.settings.announcement_bar_color }};
+    text-align: center;
+    text-decoration: none;
+  }
+  .custom-announcement-bar__message {
+    font-size: large;
+    padding: 10px;
+    color: {{ section.settings.announcement_bar_text_color }};
+  }
+  
+</style>  
+
+{%- if section.settings.show_announcement -%}
+  {%- if section.settings.home_page_only == false or template.name == 'index' -%}
+
+    {%- if section.settings.link == blank -%}
+      <div class="custom-announcement-bar">
+    {%- else -%}
+      <a href="{{ section.settings.link }}" >
+    {%- endif -%}
+
+        <p class="custom-announcement-bar__message">{{ section.settings.text | escape }}</p>
+
+    {%- if section.settings.link == blank -%}
+      </div>
+    {%- else -%}
+      </a>
+    {%- endif -%}
+
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "home_page_only",
+      "label": "Home page only",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "announcement_bar_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+	{
+      "type": "color",
+      "id": "announcement_bar_text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement text",
+      "default": "Announce something here"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Announcement link"
+    }
+  ]
+}
+{% endschema %}
+
+- Secondly, you need to make this section visible when you customize your theme. To make is visible, under theme.liquid file in layout, you have to place a code
+  which will redirects to your custom announcement bar.  {% section "custom-announcement-bar" %} - this will be coded in body section and where you need it accordingly.
