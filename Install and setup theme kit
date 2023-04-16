@@ -1,0 +1,14 @@
+To get start with a theme kit installation and setup, you have to follow the excat same step provided by shopify notes.
+Link to that steps : https://shopify.dev/docs/themes/tools/theme-kit/getting-started
+
+The steps may get changed and updated, so please follow the latest steps.
+
+Here are the steps as of April 2023 for windows
+Firstly, you have to install chocolatey. To install chocolatey, visit https://chocolatey.org/ and go for install. Parallely open windows powershell under administrative
+mode. Paste the command which you find on chocolatey browser : Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+This will install a chocolatey to your system. To verify, run 'choco -v' command in cmd
+
+Secondly, you have to install a theme kit. To do that, in same powershell, give command 'choco install themekit', this will install a theme kit to your system. 
+NOTE: While installing a theme kit, it might ask you for a permision, you have to select Y for it.
+
+Go ahead and thank me later.
